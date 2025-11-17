@@ -177,5 +177,30 @@ addworkerBtn.addEventListener('click',(e)=>{
 
     `;
 
+ 
+const input = document.getElementById('photo');
+const preview = document.getElementById('preview');
+
+input.addEventListener('change', () => {
+
+    const file = input.files[0];
+
+
+
+    const reader = new FileReader();
+
+    reader.readAsDataURL(file);
+
+
+
+    reader.onload = () => {
+
+        preview.src = reader.result;
+
+    };
+
+});
+   
+
 
 }); 
