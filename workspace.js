@@ -224,37 +224,30 @@ div.classList.add('worker-card');
 div.innerHTML=`
 
     <img src="${preview.src}" alt="workerImage" >
-
     <div class="block text-ms">
-
         <ul>
-
         <li><p>${name.value}</p></li>
-
         <li><p>${role.value}</p></li>
-
         </ul>
-
-   
-
-   
-
     <div class="crudBtn">
-
-                 <button class="edit">Edit</button>
-
-                 <button class="delete">Delete</button>
-
-    </div>
+        <button class="edit">Edit</button>
+         <button class="delete">Delete</button>
+   </div>
 
     </div>
 
 `;
-
-   
-
+   UnassignedWorker.appendChild(div);
 
 }); 
+
+closeBtn.addEventListener('click',()=>{
+    worker.textContent='';
+
+});
+
+});
+
 const UnassignedWorker = document.getElementById('UnassignedWorker');
 const WorkerData = [
 
@@ -304,4 +297,3 @@ WorkerData.forEach(e=>{
 });
 
 
-});
