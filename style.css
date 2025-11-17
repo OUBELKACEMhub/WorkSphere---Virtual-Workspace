@@ -493,6 +493,41 @@ section h1 {
 }
 
 
+/* Resopnsive */
 
+@media (max-width: 1279px) {
+    .page-containner {
+        display: flex;
+        flex-direction: column; 
+    }
+    section {
+        flex: none;
+        width: 100%;
+        height: auto;
+        margin-left: 42%;
+    }
+
+    .containner {
+        flex: none;
+        width: 37rem;        
+        height: 220vw;
+        transform: rotate(90deg); 
+        transform-origin: center center;
+        margin: 40px auto; 
+    }
+
+    .section {
+        flex: none;
+        width: 100%;
+    }
+
+    .containner > .contenu1>*,
+    .containner > .contenu2>*,
+    .containner > .contenu3>*>*, {
+        transform: rotate(-90deg);
+    }
+    
+ 
+}
 
 
