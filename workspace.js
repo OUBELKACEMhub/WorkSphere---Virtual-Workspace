@@ -200,7 +200,61 @@ input.addEventListener('change', () => {
     };
 
 });
+
+const saveBtn=document.getElementById('saveBtn');
+
+const closeBtn=document.getElementById('closeBtn');
+
+
+
+saveBtn.addEventListener('click',(e)=>{
+
+    e.preventDefault();
+
+const name=document.getElementById('name');
+
+const role = document.getElementById('role');
+
+const preview = document.getElementById('preview');
+
+const div=document.createElement('div');
+
+div.classList.add('worker-card');
+
+div.innerHTML=`
+
+    <img src="${preview.src}" alt="workerImage" >
+
+    <div class="block text-ms">
+
+        <ul>
+
+        <li><p>${name.value}</p></li>
+
+        <li><p>${role.value}</p></li>
+
+        </ul>
+
+   
+
+   
+
+    <div class="crudBtn">
+
+                 <button class="edit">Edit</button>
+
+                 <button class="delete">Delete</button>
+
+    </div>
+
+    </div>
+
+`;
+
    
 
 
 }); 
+
+
+});
