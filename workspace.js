@@ -255,6 +255,53 @@ div.innerHTML=`
 
 
 }); 
+const UnassignedWorker = document.getElementById('UnassignedWorker');
+const WorkerData = [
+
+     {
+
+        name: "Ahmed",
+        image:"images/WhatsApp Image 2025-11-13 à 22.38.16_e5b4bc95.jpg",
+        role: "IT"
+
+    },
+
+    {
+        name: "khalid",
+        image:"https://t4.ftcdn.net/jpg/04/31/64/75/360_F_431647519_usrbQ8Z983hTYe8zgA7t1XVc5fEtqcpa.jpg",
+         role: "IT"
+    },
+
+    {
+        name: "mohamed",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSYKEE5-ghIh59XAJdXK-sd-IwWdF-TYzbcL2fwhlb76zD13MhowQtcfW5wZWaagcS3os&usqp=CAU",
+        role: "IT",
+    },
+
+     
+
+];
+WorkerData.forEach(e=>{
+
+    const div=document.createElement('div');
+
+    div.classList.add('worker-card');
+
+    div.innerHTML=`
+        <img src="${e.image}">
+        <ul>
+         <li>${e.name}</li>
+          <li>${e.role}</li>
+        </ul>
+         <div class="crudBtn">
+                 <button class="edit">Edit</button>
+                  <button class="delete">Delete</button>
+
+        </div>
+
+    `;
+    UnassignedWorker.appendChild(div);
+});
 
 
 });
