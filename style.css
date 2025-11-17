@@ -10,7 +10,6 @@
     }
 
 
-
     .page-containner{
 
          display: flex;
@@ -389,3 +388,111 @@ section h1 {
     background-color: #15803d;
 
 }
+
+
+.worker-card {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    background: white;
+
+    padding: 10px;
+
+    border-radius: 8px;
+
+    margin-bottom: 10px;
+
+    gap: 10px;
+
+    border: 1px solid #ddd;
+
+}
+
+
+
+.worker-card img {
+
+    width: 60px;
+
+    height: 60px;
+
+    object-fit: cover;
+
+    border-radius: 6px;
+
+}
+
+
+
+.worker-card span p {
+
+    margin: 0;
+
+    font-size: 14px;
+
+    color: #444;
+
+}
+
+
+
+#worker {
+
+    position: absolute;
+
+    top: 80px;
+
+    right: 600px;
+
+}
+
+
+
+.crudBtn{
+
+    display: flex;
+
+    position: absolute;
+
+    right: 0;
+
+    bottom: 0;
+
+    padding: 10px 20px;
+
+    justify-content: space-between;  
+
+}
+
+
+
+.crudBtn button {
+
+    background-color: #43d43e;
+
+    padding: 10px;
+
+    margin-left: 30px;
+
+    border-radius:4px ;
+
+    font-size: 14px;
+
+}
+
+
+
+#UnassignedWorker {
+
+    overflow-y: auto;
+
+}
+
+
+
+
+
