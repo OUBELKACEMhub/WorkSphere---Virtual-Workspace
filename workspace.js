@@ -1,24 +1,10 @@
-
 const worker=document.getElementById('worker');
-
 const addworkerBtn=document.getElementById('addWorkerBtn');
-
 addworkerBtn.addEventListener('click',(e)=>{
-
        e.preventDefault();
-
     worker.innerHTML="";
-
     worker.innerHTML=`
-
-
-
 <form action="" class=" addForm flex flex-col gap-4 p-8 w-[600px]  rounded-2xl  bg-white">
-
-
-
-   
-
     <img src="images/icons8-close-24.png"
 
          alt="close"
@@ -26,11 +12,6 @@ addworkerBtn.addEventListener('click',(e)=>{
          id="closeBtn"
 
          class="absolute right-3 top-3 cursor-pointer">
-
-
-
- 
-
     <div class="flex flex-col">
 
         <label for="name" class="font-semibold text-gray-700">Name</label>
@@ -40,11 +21,6 @@ addworkerBtn.addEventListener('click',(e)=>{
                class="p-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-violet-400 outline-none text-black">
 
     </div>
-
-
-
-   
-
     <div class="flex flex-col">
 
         <label for="photo" class="font-semibold text-gray-700">Photo</label>
@@ -54,11 +30,6 @@ addworkerBtn.addEventListener('click',(e)=>{
         <img id="preview" src="https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_640.png" width="180" class="mt-2 rounded-lg shadow-md ">
 
     </div>
-
-
-
-   
-
     <div class="flex flex-col">
 
         <label class="font-semibold text-gray-700">Role</label>
@@ -76,11 +47,6 @@ addworkerBtn.addEventListener('click',(e)=>{
         </select>
 
     </div>
-
-
-
- 
-
     <div class="flex flex-col">
 
         <label class="font-semibold text-gray-700">Email</label>
@@ -90,11 +56,6 @@ addworkerBtn.addEventListener('click',(e)=>{
                class="p-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-violet-400 outline-none text-black">
 
     </div>
-
-
-
- 
-
     <div class="flex flex-col">
 
         <label class="font-semibold text-gray-700">Téléphone</label>
@@ -125,18 +86,9 @@ addworkerBtn.addEventListener('click',(e)=>{
      <label class="font-semibold text-gray-700">To</label>
 
     <input type="date"   class="p-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-violet-400 outline-none text-black">  
-
     </div>
-
   </div>
-
-   
-
-    <button type="button" class="bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg shadow-md transition"  id="addExperienceBtn"> Add Experiences </button>
-
-
-
-
+    <button type="button" class="bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg shadow-md transition"  id="addExperienceBtn"> Add Experiences </button
 
     <div class="flex justify-between mt-4">
 
@@ -157,22 +109,11 @@ addworkerBtn.addEventListener('click',(e)=>{
             Cancel
 
         </button>
-
     </div>
-
-
-
 </form>
-
-
-
-    `;
-
- 
+    `; 
 const input = document.getElementById('photo');
 const preview = document.getElementById('preview');
-
-
 
  input.addEventListener('input',(e)=>{
   const url=e.target.value;
@@ -182,8 +123,6 @@ const preview = document.getElementById('preview');
     preview.src ="https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_640.png";
    }
  });
-
-
 
 const  addExperienceBtn=document.getElementById('addExperienceBtn');
 const  experiences=document.getElementById('experiences');
@@ -284,9 +223,6 @@ const WorkerData = [
         image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSYKEE5-ghIh59XAJdXK-sd-IwWdF-TYzbcL2fwhlb76zD13MhowQtcfW5wZWaagcS3os&usqp=CAU",
         role: "IT",
     },
-
-     
-
 ];
 WorkerData.forEach(e=>{
 
@@ -309,5 +245,3 @@ WorkerData.forEach(e=>{
     `;
     UnassignedWorker.appendChild(div);
 });
-
-
