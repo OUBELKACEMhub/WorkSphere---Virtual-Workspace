@@ -130,7 +130,7 @@ const WorkerData = [
      {
         name: "Ahmed",
         image:"images/WhatsApp Image 2025-11-13 à 22.38.16_e5b4bc95.jpg",
-        role: "Techniciens IT"
+        role: "Réceptionniste"
     },
 
     {
@@ -142,8 +142,13 @@ const WorkerData = [
     {
         name: "mohamed",
         image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSYKEE5-ghIh59XAJdXK-sd-IwWdF-TYzbcL2fwhlb76zD13MhowQtcfW5wZWaagcS3os&usqp=CAU",
-        role: "Techniciens IT",
+        role: "Manager",
     },
+     {
+        name: "mohamed",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSYKEE5-ghIh59XAJdXK-sd-IwWdF-TYzbcL2fwhlb76zD13MhowQtcfW5wZWaagcS3os&usqp=CAU",
+        role: "Nettoyage",
+    }
 ];
 
 const UnassignedWorkerData=[];//data of unassignedWorker
@@ -169,30 +174,75 @@ WorkerData.forEach(e=>{
    UnassignedWorkerData.push(worker2);
 });
 
- const zoneAddBtn=document.getElementById('zoneAddBtn');
- fetch('data.json')
- .then(Response=>Response.json())
- .then(data=>{
-    
-    data.forEach(zone=>{
-       
-        zoneAddBtn.addEventListener('click',(e)=>{
-            e.preventDefault();
-            if(zoneAddBtn.classList.contains(zone.name) && zone.role.find(UnassignedWorkerData.role)){
-           const div=document.createElement('div');
-           div.classList.add('workersvaliables');
-          
-           div.innerHTML='';
-          div.innerHTML=`
-              <p>${UnassignedWorkerData.name}</p>  
-             <p>${UnassignedWorkerData.role}</p> 
-           `;
-            } 
-     
-           
-         });
+
+//fonction return les travailleur par role
+function getparRole(workers, role1) {
+    return workers.filter(w => w.role.includes(role1));
+}
+
+const it = getparRole(UnassignedWorkerData, "Techniciens IT");
+const Réceptionniste = getparRole(UnassignedWorkerData, "Réceptionniste");
+const Agent_de_sécurité = getparRole(UnassignedWorkerData, "Agent de sécurité");
+const Manager = getparRole(UnassignedWorkerData, "Manager");
+const Nettoyage = getparRole(UnassignedWorkerData, "Nettoyage");
+
+
+const zoneAddBtn = document.querySelectorAll('.zoneAddBtn');
+ function addWorker(tab,Element){
+       Element.addEventListener('click', () => {
+       const parent = Element.parentElement;
+          tab.forEach(worker => {
+            const div = document.createElement('div');
+            div.classList.add('workersvaliables');
+            div.innerHTML = `
+                <p>${worker.name}</p>
+                <p>${worker.role}</p>
+            `;
+
+            parent.appendChild(div);
+          });
+         
+        
+        });
+    }
+
+fetch('data.json')
+  .then(Response => Response.json())
+  .then(data => {
+
+    zoneAddBtn.forEach(Element => {
+    const parent = Element.parentElement;
+      if (parent.classList.contains('conference')) {
+
+        addWorker(it,Element);
+        addWorker(Réceptionniste,Element);
+        addWorker(Agent_de_sécurité,Element);
+        addWorker(Manager,Element);
+        addWorker(Nettoyage,Element);
+
+      }
+     else if (parent.classList.contains('Salle_archives')) {
+         addWorker(Manager,Element);
+     }
+     else if (parent.classList.contains('salle_de_sécurité')){
+        addWorker(Agent_de_sécurité,Element);
+     }
+     else if (parent.classList.contains('Réception')){
+        addWorker(Réceptionniste,Element);
+     }
+     else if (parent.classList.contains('Salledupersonnel')){
+        addWorker(it,Element);
+        addWorker(Réceptionniste,Element);
+        addWorker(Agent_de_sécurité,Element);
+        addWorker(Manager,Element);
+        addWorker(Nettoyage,Element);
+     }else if(parent.classList.contains('Salledesserveurs')){
+        addWorker(it,Element);
+     }
+      
+
+    });
 
   });
+;
 
-  console.log(UnassignedWorkerData);
- });
