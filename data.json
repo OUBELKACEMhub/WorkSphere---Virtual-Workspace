@@ -1,0 +1,39 @@
+[
+{
+  "id":1,
+  "nome": "Réception",
+  "role": ["Réceptionniste"],
+  "Capacity" : 2
+},
+{
+  "id":2,
+  "nome": "Salle des serveurs",
+  "role": ["Techniciens IT"],
+  "Capacity" : 6
+},
+{
+  "id":3,
+  "nome": "Salle de sécurité",
+  "role": ["Agent de sécurité"],
+  "Capacity" : 4
+},
+{
+  "id":4,
+  "nome": "Salle du personnel",
+  "role": ["Manager ","Nettoyage ","Techniciens IT","Agent de sécurité","Réceptionniste"],
+  "Capacity" : 3
+},
+{
+  "id":5,
+  "nome": "Salle d’archives",
+  "role": ["Manager"],
+  "Capacity" : 2
+},
+{
+  "id":6,
+  "nome": "Salle de conférence",
+  "role": ["Manager","Nettoyage","Techniciens IT","Agent de sécurité","Réceptionniste"],
+  "Capacity" : 13
+}
+
+]
