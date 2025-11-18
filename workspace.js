@@ -49,9 +49,9 @@ addworkerBtn.addEventListener('click',(e)=>{
 
         <label for="photo" class="font-semibold text-gray-700">Photo</label>
 
-        <input type="file" id="photo" class="mt-1">
+        <input type="text" id="photo" placeholder="image URL"   class="p-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-violet-400 outline-none text-black">
 
-        <img id="preview" src="" width="180" class="mt-2 rounded-lg shadow-md hidden">
+        <img id="preview" src="https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_640.png" width="180" class="mt-2 rounded-lg shadow-md ">
 
     </div>
 
@@ -102,14 +102,11 @@ addworkerBtn.addEventListener('click',(e)=>{
         <input type="text"
 
                class="p-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-violet-400 outline-none text-black">
-
     </div>
 
-
-
- 
-
     <label class="font-semibold text-gray-700">Experience</label>
+
+ <div id="experiences">
 
     <div class="flex flex-col p-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-violet-400 bg-gray-100">
 
@@ -131,17 +128,11 @@ addworkerBtn.addEventListener('click',(e)=>{
 
     </div>
 
-
+  </div>
 
    
 
-    <button type="button"
-
-            class="bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg shadow-md transition">
-
-        Add Experiences
-
-    </button>
+    <button type="button" class="bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg shadow-md transition"  id="addExperienceBtn"> Add Experiences </button>
 
 
 
@@ -181,25 +172,48 @@ addworkerBtn.addEventListener('click',(e)=>{
 const input = document.getElementById('photo');
 const preview = document.getElementById('preview');
 
-input.addEventListener('change', () => {
-
-    const file = input.files[0];
 
 
+ input.addEventListener('input',(e)=>{
+  const url=e.target.value;
+   if (url) {
+    preview.src = url;
+   }else{
+    preview.src ="https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_640.png";
+   }
+ });
 
-    const reader = new FileReader();
-
-    reader.readAsDataURL(file);
 
 
+const  addExperienceBtn=document.getElementById('addExperienceBtn');
+const  experiences=document.getElementById('experiences');
 
-    reader.onload = () => {
+addExperienceBtn.addEventListener('click',()=>{
+    experiences.innerHTML+=`
+      
+    <div class="flex flex-col p-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-violet-400 bg-gray-100">
 
-        preview.src = reader.result;
+     <label class="font-semibold text-gray-700">Company</label>
 
-    };
+     <input type="text" class="p-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-violet-400 outline-none text-black " ></input>
 
-});
+     <label class="font-semibold text-gray-700">Role</label>
+
+     <input type="text" class="p-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-violet-400 outline-none text-black " ></input>
+
+     <label class="font-semibold text-gray-700">From</label>
+
+    <input type="date"   class="p-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-violet-400 outline-none text-black">
+
+     <label class="font-semibold text-gray-700">To</label>
+
+    <input type="date"   class="p-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-violet-400 outline-none text-black">  
+
+    </div>
+    
+    `;
+})
+
 
 const saveBtn=document.getElementById('saveBtn');
 
