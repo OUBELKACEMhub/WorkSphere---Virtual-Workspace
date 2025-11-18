@@ -254,11 +254,40 @@ section h1 {
 }
 
 .workersvaliables {
+    display: flex;
+    position: relative;
+    align-items: center;
+    padding: 2%;
     border: 2px solid  black;
     border-radius: 4px;
-    background-color: #8b8888;
+    background-color: #c9ec9a;
     width: 200px;
     height: 80px;
+    gap: 7px;
+    text-align: left;
+}
+
+.workersvaliables #img1{
+   width: 36px;
+   height: 36px;
+   border: 2px solid black;
+   border-radius: 50%;
+   margin-right: 10px;
+}
+
+.workersvaliables .img2{
+    position: absolute;
+   width: 16px;
+   height: 16px;
+   border: 2px  solid black;
+   background-color: red;
+   border-radius: 50%;
+   top: 0;
+   right: 0;
+   margin: 2px 2px 0px 0px;
+}
+.workersvaliables .img2:hover {
+     transform: scale(1.5); 
 }
 
 .containner button {

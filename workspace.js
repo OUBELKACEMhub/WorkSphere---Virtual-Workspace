@@ -114,6 +114,7 @@ div.innerHTML=`
 
 `;
    UnassignedWorker.appendChild(div);
+   
 
 }); 
 
@@ -169,7 +170,8 @@ WorkerData.forEach(e=>{
     UnassignedWorker.appendChild(div);
     const worker2 = {
         name: e.name,
-        role: e.role
+        role: e.role,
+        image:e.image
     };
    UnassignedWorkerData.push(worker2);
 });
@@ -188,6 +190,7 @@ const Nettoyage = getparRole(UnassignedWorkerData, "Nettoyage");
 
 
 const zoneAddBtn = document.querySelectorAll('.zoneAddBtn');
+
  function addWorker(tab,Element){
        Element.addEventListener('click', () => {
        const parent = Element.parentElement;
@@ -195,13 +198,16 @@ const zoneAddBtn = document.querySelectorAll('.zoneAddBtn');
             const div = document.createElement('div');
             div.classList.add('workersvaliables');
             div.innerHTML = `
+               <img src="images/icons8-close-24.png" class="img2">
+               <img id="img1" src="${worker.image}" >
+               <div>
                 <p>${worker.name}</p>
                 <p>${worker.role}</p>
+                </div>
             `;
 
             parent.appendChild(div);
           });
-         
         
         });
     }
@@ -213,7 +219,7 @@ fetch('data.json')
     zoneAddBtn.forEach(Element => {
     const parent = Element.parentElement;
       if (parent.classList.contains('conference')) {
-
+        addEventListener('click',addWorker(it,Element))
         addWorker(it,Element);
         addWorker(Réceptionniste,Element);
         addWorker(Agent_de_sécurité,Element);
@@ -224,7 +230,7 @@ fetch('data.json')
      else if (parent.classList.contains('Salle_archives')) {
          addWorker(Manager,Element);
      }
-     else if (parent.classList.contains('salle_de_sécurité')){
+     else if (parent.classList.contains('salle_de_sécurite')){
         addWorker(Agent_de_sécurité,Element);
      }
      else if (parent.classList.contains('Réception')){
@@ -240,9 +246,21 @@ fetch('data.json')
         addWorker(it,Element);
      }
       
-
     });
 
   });
-;
+
+
+document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('img2')) {
+        const workerDiv = e.target.closest('.workersvaliables');
+        if (workerDiv) {
+            workerDiv.remove();
+        }
+    }
+});
+
+
+
+ 
 
