@@ -104,7 +104,7 @@ div.classList.add('worker-card');
 div.innerHTML=`
 
     <img src="${preview.src}" alt="workerImage" >
-    <div class="block text-ms">
+    <div class="block text-ms  flex">
         <ul>
         <li><p>${name.value}</p></li>
         <li><p>${role.value}</p></li>
@@ -141,14 +141,19 @@ const WorkerData = [
     },
 
     {
-        name: "mohamed",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSYKEE5-ghIh59XAJdXK-sd-IwWdF-TYzbcL2fwhlb76zD13MhowQtcfW5wZWaagcS3os&usqp=CAU",
+        name: "Fatima",
+        image: "https://blog.photofeeler.com/wp-content/uploads/2018/01/sample-linkedin-headshot-good.jpg",
         role: "Manager",
     },
      {
         name: "mohamed",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSYKEE5-ghIh59XAJdXK-sd-IwWdF-TYzbcL2fwhlb76zD13MhowQtcfW5wZWaagcS3os&usqp=CAU",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrJaxYg64cSX1flsMAcGFwZ071HCZq94kO2igLp4OBtRrmjoWDVM1Zd7tfcBYLFaejLe4&usqp=CAU",
         role: "Nettoyage",
+    },
+    {
+        name: "Aicha",
+        image: "https://media.gettyimages.com/id/1437816897/fr/photo/portrait-de-femme-daffaires-de-gestionnaire-ou-de-ressources-humaines-pour-la-r%C3%A9ussite.jpg?s=612x612&w=gi&k=20&c=tfcvEVTcJcfXTtA0rB-NbjurEVpp7N3QN9heh7Q0RuU=",
+        role: "sécurité",
     }
 ];
 
@@ -162,7 +167,7 @@ WorkerData.forEach(e=>{
     div.innerHTML=`
         <img src="${e.image}">
         <ul>
-         <li>${e.name}</li>
+          <li>${e.name}</li>
           <li>${e.role}</li>
         </ul>
      <button class="edit">Edit</button>
@@ -184,7 +189,7 @@ function getparRole(workers, role1) {
 
 const it = getparRole(UnassignedWorkerData, "Techniciens IT");
 const Réceptionniste = getparRole(UnassignedWorkerData, "Réceptionniste");
-const Agent_de_sécurité = getparRole(UnassignedWorkerData, "Agent de sécurité");
+const Agent_de_sécurité = getparRole(UnassignedWorkerData, "sécurité");
 const Manager = getparRole(UnassignedWorkerData, "Manager");
 const Nettoyage = getparRole(UnassignedWorkerData, "Nettoyage");
 
@@ -201,8 +206,10 @@ const zoneAddBtn = document.querySelectorAll('.zoneAddBtn');
                <img src="images/icons8-close-24.png" class="img2">
                <img id="img1" src="${worker.image}" >
                <div>
-                <p>${worker.name}</p>
-                <p>${worker.role}</p>
+               <ul>
+               <li>${worker.name}</li>
+               <li><strong>${worker.role}</strong></li>
+               </ul>
                 </div>
             `;
 
@@ -230,7 +237,7 @@ fetch('data.json')
      else if (parent.classList.contains('Salle_archives')) {
          addWorker(Manager,Element);
      }
-     else if (parent.classList.contains('salle_de_sécurite')){
+     else if (parent.classList.contains('sallesecurite')){
         addWorker(Agent_de_sécurité,Element);
      }
      else if (parent.classList.contains('Réception')){

@@ -14,13 +14,13 @@
 {
   "id":3,
   "name": "Salle de sécurité",
-  "role": ["Agent de sécurité"],
+  "role": ["sécurité"],
   "Capacity" : 4
 },
 {
   "id":4,
   "name": "Salle du personnel",
-  "role": ["Manager ","Nettoyage ","Techniciens IT","Agent de sécurité","Réceptionniste"],
+  "role": ["Manager ","Nettoyage ","Techniciens IT","sécurité","Réceptionniste"],
   "Capacity" : 3
 },
 {
@@ -32,7 +32,7 @@
 {
   "id":6,
   "name": "Salle de conférence",
-  "role": ["Manager","Nettoyage","Techniciens IT","Agent de sécurité","Réceptionniste"],
+  "role": ["Manager","Nettoyage","Techniciens IT","sécurité","Réceptionniste"],
   "Capacity" : 13
 }
 
