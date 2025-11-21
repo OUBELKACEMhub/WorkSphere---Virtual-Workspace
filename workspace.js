@@ -2,8 +2,7 @@ const worker = document.getElementById('worker');
 const addworkerBtn = document.getElementById('addWorkerBtn');
 const UnassignedWorker = document.getElementById('UnassignedWorker');
 const descWorker = document.getElementById('descWorker');
-
-const WorkerData = [
+const DefaultWorkerData = [
     {
         name: "Ahmed",
         image: "images/WhatsApp Image 2025-11-13 à 22.38.16_da362682.jpg",
@@ -86,7 +85,14 @@ const WorkerData = [
     }
 ];
 
-let UnassignedWorkerData = [...WorkerData]; 
+let UnassignedWorkerData = JSON.parse(localStorage.getItem("MyWorkerData"));
+if (!UnassignedWorkerData) {
+    UnassignedWorkerData = [...DefaultWorkerData];
+    localStorage.setItem("MyWorkerData", JSON.stringify(UnassignedWorkerData));
+}
+function saveToLocalStorage() {
+    localStorage.setItem("MyWorkerData", JSON.stringify(UnassignedWorkerData));
+}
 
 function renderWorkers() {
     UnassignedWorker.innerHTML = "";
@@ -95,8 +101,8 @@ function renderWorkers() {
         div.classList.add('worker-card');
         div.dataset.index = index;
         div.innerHTML = `
-            <img src="images/icons8-close-24.png" class="img2">
-            <img src="${e.image}" onerror="this.src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'">
+            <img src="images/icons8-close-24.png" class="img2 cursor-pointer">
+            <img src="${e.image}">
             <ul>
                 <li>${e.name}</li>
                 <li>${e.role}</li>
@@ -112,8 +118,8 @@ renderWorkers();
 function afficherDetail(worker) {
     if(!worker) return;
     descWorker.innerHTML = `
-        <img src="images/icons8-close-24.png" class="deleteicon">
-        <img src="${worker.image}" class="imgDescrp">
+        <img src="images/icons8-close-24.png" class="deleteicon cursor-pointer">
+        <img src="${worker.image}" class="imgDescrp" onerror="this.src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'">
         <ul>
             <li><strong>Name:</strong> ${worker.name}</li>
             <li><strong>Role:</strong> ${worker.role}</li>
@@ -122,7 +128,11 @@ function afficherDetail(worker) {
         <strong><h3>Experiences:</h3></strong>
         <ul>
             ${worker.experiences && worker.experiences.length > 0 ? 
-              worker.experiences.map(exp => `<li><strong>${exp.position || 'Poste'}</strong> (${exp.duration || ''}) <br> ${exp.description || ''}</li>`).join("") 
+              worker.experiences.map(exp => `<li><strong>${exp.position || 'Poste'}</strong> 
+                (${exp.duration || ''}) 
+                <br> ${exp.description || ''}
+                </li>
+                `).join("") 
               : "<li>Pas d'expérience</li>"}
         </ul>
     `;
@@ -132,9 +142,13 @@ UnassignedWorker.addEventListener('click', (e) => {
     const card = e.target.closest('.worker-card');
     if (!card) return;
     
+   
     if (e.target.classList.contains('img2')) {
         const index = card.dataset.index;
         UnassignedWorkerData.splice(index, 1); 
+        
+        saveToLocalStorage(); 
+        
         renderWorkers(); 
         descWorker.innerHTML = "";
         return;
@@ -154,7 +168,7 @@ descWorker.addEventListener('click', (e) => {
 addworkerBtn.addEventListener('click', (e) => {
     e.preventDefault();
     
-    // 1. Injecter l-HTML dyal Formulaire
+
     worker.innerHTML = `
     <div class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
         <form class="addForm flex flex-col gap-4 p-8 w-[700px] rounded-2xl bg-white relative h-[90vh] overflow-y-auto  text-black-200 ">
@@ -162,18 +176,18 @@ addworkerBtn.addEventListener('click', (e) => {
             
             <div class="flex flex-col">
                 <label class="font-semibold text-gray-700">Name</label>
-                <input type="text" id="name" class="p-2 rounded-lg border border-gray-300">
+                <input type="text" id="name" class="p-2 rounded-lg border border-gray-700">
             </div>
             
             <div class="flex flex-col">
                 <label class="font-semibold text-gray-700">Photo URL</label>
-                <input type="text" id="photo" placeholder="image URL" class="p-2 rounded-lg border border-gray-300">
+                <input type="text" id="photo" placeholder="image URL" class="p-2 rounded-lg border border-gray-700">
                 <img id="preview" src="https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_640.png" width="100" class="mt-2 rounded shadow">
             </div>
             
             <div class="flex flex-col">
                 <label class="font-semibold text-gray-700">Role</label>
-                <select id="role" class="p-2 rounded-lg border border-gray-300">
+                <select id="role" class="p-2 rounded-lg border border-gray-700  text-black">
                     <option value="Réceptionniste">Réceptionniste</option>
                     <option value="Technicien IT">Technicien IT</option>
                     <option value="Agent de sécurité">Agent de sécurité</option>
@@ -184,12 +198,12 @@ addworkerBtn.addEventListener('click', (e) => {
 
             <div class="flex flex-col">
                 <label class="font-semibold text-gray-700">Email</label>
-                <input type="email" id="email" placeholder="exemple@mail.com" class="p-2 rounded-lg border border-gray-300">
+                <input type="email" id="email" placeholder="exemple@mail.com" class="p-2 rounded-lg border border-gray-700">
             </div>
             
             <div class="flex flex-col">
                 <label class="font-semibold text-gray-700">Téléphone</label>
-                <input type="text" id="phone" class="p-2 rounded-lg border border-gray-300">
+                <input type="text" id="phone" class="p-2 rounded-lg border b text-black">
             </div>
 
             <label class="font-semibold text-black text-xl mt-2">Experiences</label>
@@ -255,7 +269,7 @@ addworkerBtn.addEventListener('click', (e) => {
                             <input type="date" class="exp-to w-full p-1 border rounded text-black">
                         </div>
                      </div>
-             <button type="button" class="text-red-500 text-xs mt-2 self-end delete-exp hover:underline"></button>
+             <button type="button" class="text-red-500 text-xs mt-2 self-end delete-exp hover:underline">Supprimer</button>
         `;
         
        
@@ -263,13 +277,11 @@ addworkerBtn.addEventListener('click', (e) => {
         
         experiencesContainer.appendChild(div);
     });
-
-   
     const closeForm = () => worker.innerHTML = '';
+
+
     document.getElementById('closeBtn').addEventListener('click', closeForm);
     document.getElementById('cancelBtn').addEventListener('click', closeForm);
-
-   
     document.getElementById('saveBtn').addEventListener('click', (ev) => {
         ev.preventDefault();
 
@@ -301,7 +313,6 @@ addworkerBtn.addEventListener('click', (e) => {
             }
         });
 
-        
         const newWorker = {
             name: nameVal,
             image: photoVal,
@@ -311,8 +322,10 @@ addworkerBtn.addEventListener('click', (e) => {
             experiences: collectedExperiences
         };
         UnassignedWorkerData.push(newWorker);
-        renderWorkers();
         
+        saveToLocalStorage(); 
+
+        renderWorkers(); 
         closeForm();
     });
 });
@@ -321,23 +334,31 @@ function getparRole(workers, role1) {
     return workers.filter(w => w.role.includes(role1));
 }
 
+function clearTab(elemt){
+   elemt.splice(1,1);
+}
+
 function addWorkerToZone(roleString, element) {
     const parent = element.parentElement;
-    
+    const zone_container=parent.querySelector('.zone_container')
+    const dev=parent.querySelector('.zone');
     const tab = getparRole(UnassignedWorkerData, roleString);
     
     // Affichage
     tab.forEach(worker => {
+
         const div = document.createElement('div');
-        div.classList.add('workersvaliables', 'flex', 'items-center', 'gap-2', 'mt-1');
+        div.classList.add('workersvaliables');
         div.innerHTML = `
-            <img src="${worker.image}" class="w-8 h-8 rounded-full">
-            <div class="text-xs">
-                <p class="font-bold">${worker.name}</p>
+       
+            <img src="${worker.image}"">
+            <div>
+                <p >${worker.name}</p>
                 <p>${worker.role}</p>
             </div>
+       
         `;
-        parent.appendChild(div);
+        zone_container.appendChild(div);
     });
 }
 
@@ -345,22 +366,30 @@ const zoneAddBtn = document.querySelectorAll('.zoneAddBtn');
 
 zoneAddBtn.forEach(element => {
     element.addEventListener('click', () => {
+
+        element.
         const parent = element.parentElement;
+
         
         if (parent.classList.contains('conference')) {
-            addWorkerToZone("", element); 
+            addWorkerToZone("", element);
+             
         } 
         else if (parent.classList.contains('Salle_archives')) {
             addWorkerToZone("Manager", element);
+            
         }
         else if (parent.classList.contains('sallesecurite')) {
             addWorkerToZone("Agent de sécurité", element); 
+            addWorkerToZone("Manager", element);
         }
         else if (parent.classList.contains('Réception')) {
             addWorkerToZone("Réceptionniste", element);
+            addWorkerToZone("Manager", element);
         }
         else if (parent.classList.contains('Salledesserveurs')) {
             addWorkerToZone("Technicien IT", element);
+            addWorkerToZone("Manager", element);
         }
     });
 });
