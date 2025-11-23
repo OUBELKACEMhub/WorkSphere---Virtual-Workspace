@@ -34,7 +34,7 @@ function updateZoneColor() {
                 if (container) {
                     count = container.children.length;
                 }
-                if (count === 0  && (element.classList.contains('Salle_archives')||element.classList.contains('Salledesserveurs')||element.classList.contains('Réception')||element.classList.contains(sallesecurite))) {
+                if (count === 0  && (element.classList.contains('Salle_archives')||element.classList.contains('Salledesserveurs')||element.classList.contains('Réception')||element.classList.contains('sallesecurite'))) {
                     element.style.backgroundColor = "rgba(220, 38, 38, 0.3)"; 
                     element.style.border = "2px dashed red";
                 } else {
