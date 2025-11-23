@@ -10,7 +10,7 @@ fetch('data.json')
     .then(response => response.json())
     .then(data => {
         const DefaultWorkerData = [...data];
-                    localStorage.setItem("MyWorkerData", JSON.stringify(DefaultWorkerData));
+        localStorage.setItem("MyWorkerData", JSON.stringify(DefaultWorkerData));
 
         let UnassignedWorkerData = JSON.parse(localStorage.getItem("MyWorkerData"));
         if (!UnassignedWorkerData) {
@@ -18,9 +18,13 @@ fetch('data.json')
             localStorage.setItem("MyWorkerData", JSON.stringify(UnassignedWorkerData));
         }
 
+//    function saveToLocalStorage  
+
         function saveToLocalStorage() {
             localStorage.setItem("MyWorkerData", JSON.stringify(UnassignedWorkerData));
         }
+
+// function updateZoneColor() 
 
 function updateZoneColor() {
             const zones = document.querySelectorAll('.zones');
@@ -30,7 +34,7 @@ function updateZoneColor() {
                 if (container) {
                     count = container.children.length;
                 }
-                if (count === 0) {
+                if (count === 0  && (element.classList.contains('Salle_archives')||element.classList.contains('Salledesserveurs')||element.classList.contains('Réception')||element.classList.contains(sallesecurite))) {
                     element.style.backgroundColor = "rgba(220, 38, 38, 0.3)"; 
                     element.style.border = "2px dashed red";
                 } else {
@@ -40,7 +44,7 @@ function updateZoneColor() {
             });  
         }
 
-
+// fonction  renderWorkers()
         function renderWorkers() {
             UnassignedWorker.innerHTML = "";
             UnassignedWorkerData.forEach((e, index) => {

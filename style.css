@@ -111,7 +111,7 @@
     .contenu3{
         display: grid;
         grid-template-columns:  1fr;
-        grid-template-rows: 0.9fr 1.1fr 0.9fr;
+        grid-template-rows: repeat(1fr,3);
         text-align: center;
         grid-row: 1/-1;
         z-index: 11;
