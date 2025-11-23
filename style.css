@@ -1,6 +1,4 @@
- * {
-        box-sizing: border-box; 
-    }
+
 
     body {
         color: white;
@@ -157,15 +155,7 @@
     } */
 
 
-    .contenu4{
-       display: grid;
-       grid-template-columns: 1fr 1fr;
-       grid-row: 1fr;
-        position: relative;
-       justify-content: center;
-       align-items: center;
-       z-index: 11;
-    }
+    /* s */
     .box4{
         display: flex;
         flex: 2;

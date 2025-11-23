@@ -21,6 +21,26 @@ fetch('data.json')
         function saveToLocalStorage() {
             localStorage.setItem("MyWorkerData", JSON.stringify(UnassignedWorkerData));
         }
+
+function updateZoneColor() {
+            const zones = document.querySelectorAll('.zones');
+            zones.forEach(element => {
+                const container = element.querySelector('.zone_active'); 
+                let count = 0;
+                if (container) {
+                    count = container.children.length;
+                }
+                if (count === 0) {
+                    element.style.backgroundColor = "rgba(220, 38, 38, 0.3)"; 
+                    element.style.border = "2px dashed red";
+                } else {
+                    element.style.backgroundColor = "transparent";
+                    element.style.border = "none";
+                }
+            });  
+        }
+
+
         function renderWorkers() {
             UnassignedWorker.innerHTML = "";
             UnassignedWorkerData.forEach((e, index) => {
@@ -41,6 +61,7 @@ fetch('data.json')
         }
 
         renderWorkers();
+        updateZoneColor();
 
         function updateCurrentZone() {
             if (currentActiveBtn && currentActiveRole !== null) {
@@ -258,7 +279,6 @@ fetch('data.json')
             });
         }
         addworkerForm();
-
         function getparRole(workers, role1) {
             if (!role1 || role1 === "") return workers;
             return workers.filter(w => w.role.includes(role1));
@@ -298,7 +318,7 @@ fetch('data.json')
                     
                         saveToLocalStorage();
                         renderWorkers();
-        
+                        updateZoneColor()
                         div.remove();
                     }
                 });
@@ -306,6 +326,9 @@ fetch('data.json')
                 zoneContainer.appendChild(div);
             });
         }
+
+
+
         function assignWorkerToActiveZone(workerData, zoneParent, workerDiv) {
             let activeZone = zoneParent.querySelector('.zone_active');
             if (!activeZone) {
@@ -326,6 +349,7 @@ fetch('data.json')
             activeDiv.classList.add('activeDiv');
             activeZone.classList.add('zone_activeStyle');
             activeZone.appendChild(activeDiv);
+           updateZoneColor();
         }
 
         const zoneAddBtn = document.querySelectorAll('.zoneAddBtn');
@@ -370,6 +394,9 @@ fetch('data.json')
                 });
             });
         }
-        
+      
         filterZone();
     });
+   
+
+   
