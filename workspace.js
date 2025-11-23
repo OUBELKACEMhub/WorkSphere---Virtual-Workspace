@@ -2,97 +2,12 @@ const worker = document.getElementById('worker');
 const addworkerBtn = document.getElementById('addWorkerBtn');
 const UnassignedWorker = document.getElementById('UnassignedWorker');
 const descWorker = document.getElementById('descWorker');
-const DefaultWorkerData = [
-    {
-        name: "Ahmed",
-        image: "images/WhatsApp Image 2025-11-13 à 22.38.16_da362682.jpg",
-        role: "Réceptionniste",
-        email:"Ahmedoub78@gmail.com",
-        telephone:"+21270306879",
-        company: "Tech Solutions SARL",
-        experiences: [
-            {
-                Company:"Z12",
-                position: "Support IT",
-                duration: "Jan 2022 - Dec 2022",
-                description: "Maintenance des systèmes et assistance aux utilisateurs."
-            },
-            {
-                Company:"Z12",
-                position: "Technicien réseau",
-                duration: "Jan 2023 - Present",
-                description: "Gestion des infrastructures réseau et sécurité informatique."
-            }
-        ]
-    },
-    {
-        name: "Khalid",
-        image: "https://t4.ftcdn.net/jpg/04/31/64/75/360_F_431647519_usrbQ8Z983hTYe8zgA7t1XVc5fEtqcpa.jpg",
-        role: "Technicien IT",
-        email:"Khalid21@gmail.com",
-        telephone:"+21270306974",
-        company: "Tech Solutions SARL",
-        experiences: [
-            {
-                Company:"Z12",
-                position: "Support IT",
-                duration: "Jan 2022 - Dec 2022",
-                description: "Maintenance des systèmes et assistance aux utilisateurs."
-            },
-            {
-                Company:"Z12",
-                position: "Technicien réseau",
-                duration: "Jan 2023 - Present",
-                description: "Gestion des infrastructures réseau et sécurité informatique."
-            }
-        ]
-    },
-    {
-        name: "Fatima",
-        image: "https://blog.photofeeler.com/wp-content/uploads/2018/01/sample-linkedin-headshot-good.jpg",
-        role: "Manager",
-        email:"Fatima88@gmail.com",
-        telephone:"+212703060577",
-        company: "Tech Solutions SARL",
-        experiences: [
-            {
-                Company:"Z12",
-                position: "Support IT",
-                duration: "Jan 2022 - Dec 2022",
-                description: "Maintenance des systèmes et assistance aux utilisateurs."
-            },
-            {
-                Company:"Z12",
-                position: "Technicien réseau",
-                duration: "Jan 2023 - Present",
-                description: "Gestion des infrastructures réseau et sécurité informatique."
-            }
-        ]
-    },
-    {
-        name: "Aicha",
-        image: "https://media.gettyimages.com/id/1437816897/fr/photo/portrait-de-femme-daffaires-de-gestionnaire-ou-de-ressources-humaines-pour-la-r%C3%A9ussite.jpg?s=612x612&w=gi&k=20&c=tfcvEVTcJcfXTtA0rB-NbjurEVpp7N3QN9heh7Q0RuU=",
-        role: "sécurité",
-        email:"aich06@gmail.com",
-        telephone:"+212703067426",
-        company: "Tech Solutions SARL",
-        experiences: [
-            {
-                Company:"Z12",
-                position: "Support IT",
-                duration: "Jan 2022 - Dec 2022",
-                
-                description: "Maintenance des systèmes et assistance aux utilisateurs."
-            },
-            {
-                Company:"Z12",
-                position: "Technicien réseau",
-                duration: "Jan 2023 - Present",
-                description: "Gestion des infrastructures réseau et sécurité informatique."
-            }
-        ]
-    }
-];
+
+fetch('data.json')
+.then(respone=>respone.json())
+.then(data=>{
+const DefaultWorkerData=[...data];
+
 let UnassignedWorkerData = JSON.parse(localStorage.getItem("MyWorkerData"));
 if (!UnassignedWorkerData) {
     UnassignedWorkerData = [...DefaultWorkerData];
@@ -192,30 +107,28 @@ descWorker.addEventListener('click', (e) => {
     }
 });
 
-
+function addworkerForm(){
 addworkerBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    
-
     worker.innerHTML = `
     <div class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
         <form class="addForm flex flex-col gap-4 p-8 w-[700px] rounded-2xl bg-white relative h-[90vh] overflow-y-auto  text-black-200 ">
             <img src="images/icons8-close-24.png" id="closeBtn" class="absolute right-3 top-3 cursor-pointer">
             
             <div class="flex flex-col">
-                <label class="font-semibold text-gray-700">Name</label>
-                <input type="text" id="name" class="p-2 rounded-lg border border-gray-700">
+                <label class="font-semiboldtext-black-200">Name</label>
+                <input type="text" id="name" class="p-2 rounded-lg border text-black-200">
             </div>
             
             <div class="flex flex-col">
                 <label class="font-semibold text-gray-700">Photo URL</label>
-                <input type="text" id="photo" placeholder="image URL" class="p-2 rounded-lg border border-gray-700">
+                <input type="text" id="photo" placeholder="image URL" class="p-2 rounded-lg border text-black-200">
                 <img id="preview" src="https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_640.png" width="100" class="mt-2 rounded shadow">
             </div>
             
             <div class="flex flex-col">
                 <label class="font-semibold text-gray-700">Role</label>
-                <select id="role" class="p-2 rounded-lg border border-gray-700  text-black">
+                <select id="role" class="p-2 rounded-lg border border-gray-700  text-black-200">
                     <option value="Réceptionniste">Réceptionniste</option>
                     <option value="Technicien IT">Technicien IT</option>
                     <option value="sécurité">sécurité</option>
@@ -226,7 +139,7 @@ addworkerBtn.addEventListener('click', (e) => {
 
             <div class="flex flex-col">
                 <label class="font-semibold text-gray-700">Email</label>
-                <input type="email" id="email" placeholder="exemple@mail.com" class="p-2 rounded-lg border border-gray-700">
+                <input type="email" id="email" placeholder="exemple@mail.com" class="p-2 rounded-lg border text-black">
             </div>
             
             <div class="flex flex-col">
@@ -313,6 +226,9 @@ addworkerBtn.addEventListener('click', (e) => {
         
         experiencesContainer.appendChild(div);
     });
+
+
+   
     const closeForm = () => worker.innerHTML = '';
 
 
@@ -366,100 +282,106 @@ addworkerBtn.addEventListener('click', (e) => {
         closeForm();
     });
 });
+}
+addworkerForm();
 
 function getparRole(workers, role1) {
+    if (role1 === "") return workers;
     return workers.filter(w => w.role.includes(role1));
 }
 
-function clearTab(elemt){
-   elemt.splice(1,1);
-}
 
-const workeractive=[];
-function addWorkerToZone(role, element) {
-    const parent = element.parentElement;
-    const zone_container=parent.querySelector('.zone_container')
-    const dev=parent.querySelector('.zone');
-    const tab = getparRole(UnassignedWorkerData, role);
+function addWorkerToZone(role, btnElement) {
+    const parent = btnElement.parentElement;
+    const zoneContainer = parent.querySelector('.zone_container');
     
-    /*  <p><strong>${worker.role}</strong></p>*/
-    // Affichage
-    tab.forEach(worker => {
+    const tab = getparRole(UnassignedWorkerData, role);
+    zoneContainer.innerHTML = "";
 
+    tab.forEach(worker => {
         const div = document.createElement('div');
         div.classList.add('workersvaliables');
         div.innerHTML = `
-             
-            <img src="${worker.image}" id="img1">
-            <div>
-               <strong> <p >${worker.name}</p></strong>
-           
+            <div style="display:flex; align-items:center; gap:10px;">
+                <img src="${worker.image}" style="width:40px; height:40px; object-fit:cover; border-radius:50%;">
+                <div>
+                    <strong>${worker.name}</strong>
+                    <p>${worker.role}</p>
+                </div>
             </div>
-            <br>
-            <img src="images/icons8-add-100.png" class="addicons">
+            <img src="images/icons8-add-100.png" class="addicons" >
         `;
-        
-        zone_container.appendChild(div);
+        const addIcon = div.querySelector('.addicons');
+        addIcon.addEventListener('click', () => {
+            assignWorkerToActiveZone(worker, parent, div);
+        });
+
+        zoneContainer.appendChild(div);
     });
 }
 
 
 
 
+function assignWorkerToActiveZone(workerData, zoneParent, workerDiv) {
+   
+    let activeZone = zoneParent.querySelector('.zone_active');
+    
+    if (!activeZone) {
+        activeZone = document.createElement('div');
+        activeZone.classList.add('zone_active');
+        activeZone.style.marginTop = "10px";
+        activeZone.style.borderTop = "2px dashed #333";
+        activeZone.style.paddingTop = "10px";
+        zoneParent.appendChild(activeZone);
+    }
+
+    const activeDiv = document.createElement('div');
+    activeDiv.classList.add('active-worker-card');
+    activeDiv.innerHTML = `
+        <img src="${workerData.image}" style="width:30px; height:30px; border-radius:50%; border:2px solid green;">
+        <span style="font-size:12px; font-weight:bold;">${workerData.name}</span>
+    `;
+    activeDiv.classList.add('activeDiv');
+    activeZone.classList.add('zone_activeStyle');
+    activeZone.appendChild(activeDiv);
+
+    workerDiv.remove();
+}
+
 const zoneAddBtn = document.querySelectorAll('.zoneAddBtn');
+
 zoneAddBtn.forEach(element => {
     element.addEventListener('click', () => {
+        zoneAddBtn.forEach(btn => {
+            btn.disabled = false;
+            btn.style.cursor = "pointer";
+            btn.style.opacity = "1";
+            const p = btn.parentElement;
+            const c = p.querySelector('.zone_container');
+            if(c) c.innerHTML = ""; 
+        });
         element.disabled = true;
         element.style.cursor = "not-allowed";
+        element.style.opacity = "0.5";
+
         const parent = element.parentElement;
-
         if (parent.classList.contains('conference')) {
-             document.querySelectorAll('.zone_container').forEach(cont => {
-            cont.innerHTML = "";
-            cont.style = "";
-
-           });
-            addWorkerToZone("", element);
-             
+            addWorkerToZone("", element); 
         } 
         else if (parent.classList.contains('Salle_archives')) {
-             document.querySelectorAll('.zone_container').forEach(cont => {
-            cont.innerHTML = "";
-            cont.style = "";
-        });
             addWorkerToZone("Manager", element);
-            
         }
         else if (parent.classList.contains('sallesecurite')) {
-             
-            document.querySelectorAll('.zone_container').forEach(cont => {
-            cont.innerHTML = "";
-            cont.style = "";
-        });
-
             addWorkerToZone("sécurité", element); 
-            addWorkerToZone("Manager", element);
-           
         }
         else if (parent.classList.contains('Réception')) {
-            document.querySelectorAll('.zone_container').forEach(cont => {
-            cont.innerHTML = "";
-            cont.style = "";
-            });
             addWorkerToZone("Réceptionniste", element);
-            addWorkerToZone("Manager", element);
         }
         else if (parent.classList.contains('Salledesserveurs')) {
-             document.querySelectorAll('.zone_container').forEach(cont => {
-            cont.innerHTML = "";
-            cont.style = "";
-            });
             addWorkerToZone("Technicien IT", element);
-            addWorkerToZone("Manager", element);
         }
-   
     });
 });
 
-
-
+})
