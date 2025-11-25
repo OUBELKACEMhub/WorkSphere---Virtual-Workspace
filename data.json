@@ -3,87 +3,431 @@
     "name": "Ahmed",
     "image": "images/WhatsApp Image 2025-11-13 à 22.38.16_da362682.jpg",
     "role": "Réceptionniste",
-    "email": "Ahmedoub78@gmail.com",
-    "telephone": "+21270306879",
+    "email": "ahmed.recep01@gmail.com",
+    "telephone": "+212700112201",
     "company": "Tech Solutions SARL",
     "experiences": [
       {
-        "Company": "Z12",
-        "position": "Support IT",
-        "duration": "Jan 2022 - Dec 2022",
-        "description": "Maintenance des systèmes et assistance aux utilisateurs."
+        "Company": "ocp",
+        "position": "Réceptionniste",
+        "duration": "2021 - 2022",
+        "description": "Accueil des visiteurs et gestion des réservations."
       },
       {
-        "Company": "Z12",
-        "position": "Technicien réseau",
-        "duration": "Jan 2023 - Present",
-        "description": "Gestion des infrastructures réseau et sécurité informatique."
+        "Company": "ocp",
+        "position": "Accueil & Support",
+        "duration": "2023 - Present",
+        "description": "Gestion des appels et orientation des clients."
       }
     ]
   },
   {
-    "name": "Khalid",
-    "image": "https://t4.ftcdn.net/jpg/04/31/64/75/360_F_431647519_usrbQ8Z983hTYe8zgA7t1XVc5fEtqcpa.jpg",
-    "role": "Technicien IT",
-    "email": "Khalid21@gmail.com",
-    "telephone": "+21270306974",
-    "company": "Tech Solutions SARL",
-    "experiences": [
-      {
-        "Company": "Z12",
-        "position": "Support IT",
-        "duration": "Jan 2022 - Dec 2022",
-        "description": "Maintenance des systèmes et assistance aux utilisateurs."
-      },
-      {
-        "Company": "Z12",
-        "position": "Technicien réseau",
-        "duration": "Jan 2023 - Present",
-        "description": "Gestion des infrastructures réseau et sécurité informatique."
-      }
-    ]
-  },
-  {
-    "name": "Fatima",
-    "image": "https://blog.photofeeler.com/wp-content/uploads/2018/01/sample-linkedin-headshot-good.jpg",
+    "name": "Sara",
+    "image": "https://randomuser.me/api/portraits/women/34.jpg",
     "role": "Manager",
-    "email": "Fatima88@gmail.com",
-    "telephone": "+212703060577",
+    "email": "sara.manager01@gmail.com",
+    "telephone": "+212700112202",
     "company": "Tech Solutions SARL",
     "experiences": [
       {
-        "Company": "Z12",
-        "position": "Support IT",
-        "duration": "Jan 2022 - Dec 2022",
-        "description": "Maintenance des systèmes et assistance aux utilisateurs."
+        "Company": "Nexa",
+        "position": "Team Leader",
+        "duration": "2020 - 2022",
+        "description": "Supervision d'équipes et gestion de planning."
       },
       {
-        "Company": "Z12",
-        "position": "Technicien réseau",
-        "duration": "Jan 2023 - Present",
-        "description": "Gestion des infrastructures réseau et sécurité informatique."
+        "Company": "Tech Solutions SARL",
+        "position": "Manager",
+        "duration": "2023 - Present",
+        "description": "Organisation interne et gestion du personnel."
       }
     ]
   },
   {
-    "name": "Aicha",
-    "image": "https://media.gettyimages.com/id/1437816897/fr/photo/portrait-de-femme-daffaires-de-gestionnaire-ou-de-ressources-humaines-pour-la-r%C3%A9ussite.jpg?s=612x612&w=gi&k=20&c=tfcvEVTcJcfXTtA0rB-NbjurEVpp7N3QN9heh7Q0RuU=",
+    "name": "Rachid",
+    "image": "https://randomuser.me/api/portraits/men/72.jpg",
     "role": "sécurité",
-    "email": "aich06@gmail.com",
-    "telephone": "+212703067426",
+    "email": "rachid.sec01@gmail.com",
+    "telephone": "+212700112203",
     "company": "Tech Solutions SARL",
     "experiences": [
       {
-        "Company": "Z12",
-        "position": "Support IT",
-        "duration": "Jan 2022 - Dec 2022",
-        "description": "Maintenance des systèmes et assistance aux utilisateurs."
+        "Company": "CityWatch",
+        "position": "Agent Sécurité",
+        "duration": "2019 - 2021",
+        "description": "Surveillance du site et contrôle des accès."
       },
       {
-        "Company": "Z12",
-        "position": "Technicien réseau",
-        "duration": "Jan 2023 - Present",
-        "description": "Gestion des infrastructures réseau et sécurité informatique."
+        "Company": "Tech Solutions SARL",
+        "position": "Sécurité",
+        "duration": "2022 - Present",
+        "description": "Protection du bâtiment et gestion des incidents."
+      }
+    ]
+  },
+  {
+    "name": "Salma",
+    "image": "https://randomuser.me/api/portraits/women/22.jpg",
+    "role": "Nettoyage",
+    "email": "salma.clean01@gmail.com",
+    "telephone": "+212700112204",
+    "company": "Tech Solutions SARL",
+    "experiences": [
+      {
+        "Company": "CleanOffice",
+        "position": "Agent de Nettoyage",
+        "duration": "2020 - 2022",
+        "description": "Nettoyage des bureaux et zones communes."
+      },
+      {
+        "Company": "Tech Solutions SARL",
+        "position": "Responsable Nettoyage",
+        "duration": "2023 - Present",
+        "description": "Organisation et contrôle du nettoyage."
+      }
+    ]
+  },
+  {
+    "name": "Youssef",
+    "image": "https://randomuser.me/api/portraits/men/15.jpg",
+    "role": "Technicien IT",
+    "email": "youssef.it01@gmail.com",
+    "telephone": "+212700112205",
+    "company": "Tech Solutions SARL",
+    "experiences": [
+      {
+        "Company": "SoftMaroc",
+        "position": "Support IT",
+        "duration": "2021 - 2022",
+        "description": "Assistance technique aux utilisateurs."
+      },
+      {
+        "Company": "Tech Solutions SARL",
+        "position": "Technicien IT",
+        "duration": "2023 - Present",
+        "description": "Maintenance informatique et gestion réseau."
+      }
+    ]
+  },
+
+  {
+    "name": "Nadia",
+    "image": "https://randomuser.me/api/portraits/women/51.jpg",
+    "role": "Manager",
+    "email": "nadia.manager02@gmail.com",
+    "telephone": "+212700112206",
+    "company": "Tech Solutions SARL",
+    "experiences": [
+      {
+        "Company": "DigitalCorp",
+        "position": "Manager Adjointe",
+        "duration": "2020 - 2022",
+        "description": "Coordination d'équipe et suivi de dossiers."
+      },
+      {
+        "Company": "ocp",
+        "position": "Manager",
+        "duration": "2023 - Present",
+        "description": "Optimisation des performances internes."
+      }
+    ]
+  },
+
+  {
+    "name": "Omar",
+    "image": "https://randomuser.me/api/portraits/men/41.jpg",
+    "role": "sécurité",
+    "email": "omar.sec02@gmail.com",
+    "telephone": "+212700112207",
+    "company": "Tech Solutions SARL",
+    "experiences": [
+      {
+        "Company": "GuardPlus",
+        "position": "Agent Sécurité",
+        "duration": "2018 - 2021",
+        "description": "Surveillance et contrôle des visiteurs."
+      },
+      {
+        "Company": "Tech Solutions SARL",
+        "position": "Sécurité",
+        "duration": "2022 - Present",
+        "description": "Sécurisation du périmètre et gestion des alertes."
+      }
+    ]
+  },
+
+  {
+    "name": "Imane",
+    "image": "https://randomuser.me/api/portraits/women/18.jpg",
+    "role": "Réceptionniste",
+    "email": "imane.recep02@gmail.com",
+    "telephone": "+212700112208",
+    "company": "Tech Solutions SARL",
+    "experiences": [
+      {
+        "Company": "OfficeHub",
+        "position": "Assistante Accueil",
+        "duration": "2021 - 2022",
+        "description": "Accueil physique et téléphonique."
+      },
+      {
+        "Company": "Tech Solutions SARL",
+        "position": "Réceptionniste",
+        "duration": "2023 - Present",
+        "description": "Gestion des rendez-vous et orientation visiteurs."
+      }
+    ]
+  },
+
+  {
+    "name": "Hakim",
+    "image": "https://randomuser.me/api/portraits/men/8.jpg",
+    "role": "Technicien IT",
+    "email": "hakim.it02@gmail.com",
+    "telephone": "+212700112209",
+    "company": "Tech Solutions SARL",
+    "experiences": [
+      {
+        "Company": "NetTech",
+        "position": "Support Technique",
+        "duration": "2020 - 2022",
+        "description": "Installation et configuration des postes."
+      },
+      {
+        "Company": "Tech Solutions SARL",
+        "position": "Technicien IT",
+        "duration": "2023 - Present",
+        "description": "Maintenance réseau et dépannage logiciel."
+      }
+    ]
+  },
+
+  {
+    "name": "Meriem",
+    "image": "https://randomuser.me/api/portraits/women/62.jpg",
+    "role": "Nettoyage",
+    "email": "meriem.clean02@gmail.com",
+    "telephone": "+212600112210",
+    "company": "Tech Solutions SARL",
+    "experiences": [
+      {
+        "Company": "ProClean",
+        "position": "Agent entretien",
+        "duration": "2020 - 2022",
+        "description": "Nettoyage bureaux et équipements."
+      },
+      {
+        "Company": "Tech Solutions SARL",
+        "position": "Nettoyage",
+        "duration": "2023 - Present",
+        "description": "Entretien quotidien du site."
+      }
+    ]
+  },
+
+  {
+    "name": "Samir",
+    "image": "https://randomuser.me/api/portraits/men/37.jpg",
+    "role": "Sécurité",
+    "email": "samir.sec03@gmail.com",
+    "telephone": "+212600112211",
+    "company": "Tech Solutions SARL",
+    "experiences": [
+      {
+        "Company": "WatchGuard",
+        "position": "Sécurité",
+        "duration": "2019 - 2021",
+        "description": "Contrôle d'accès et surveillance caméra."
+      },
+      {
+        "Company": "Tech Solutions SARL",
+        "position": "Sécurité",
+        "duration": "2022 - Present",
+        "description": "Sécurisation des locaux."
+      }
+    ]
+  },
+
+  {
+    "name": "Laila",
+    "image": "https://randomuser.me/api/portraits/women/26.jpg",
+    "role": "Manager",
+    "email": "laila.manager03@gmail.com",
+    "telephone": "+212700112212",
+    "company": "Tech Solutions SARL",
+    "experiences": [
+      {
+        "Company": "ProLeader",
+        "position": "Manager",
+        "duration": "2019 - 2022",
+        "description": "Gestion administrative et RH."
+      },
+      {
+        "Company": "Tech Solutions SARL",
+        "position": "Chef de département",
+        "duration": "2023 - Present",
+        "description": "Supervision des projets et ressources."
+      }
+    ]
+  },
+
+  {
+    "name": "Ayoub",
+    "image": "https://randomuser.me/api/portraits/men/29.jpg",
+    "role": "Technicien IT",
+    "email": "ayoub.it03@gmail.com",
+    "telephone": "+212700112213",
+    "company": "Tech Solutions SARL",
+    "experiences": [
+      {
+        "Company": "InfoPlus",
+        "position": "Tech Support",
+        "duration": "2020 - 2022",
+        "description": "Diagnostic et résolution de problèmes."
+      },
+      {
+        "Company": "Tech Solutions SARL",
+        "position": "Technicien IT",
+        "duration": "2023 - Present",
+        "description": "Gestion des réseaux et serveurs."
+      }
+    ]
+  },
+
+  {
+    "name": "Hiba",
+    "image": "https://randomuser.me/api/portraits/women/14.jpg",
+    "role": "Réceptionniste",
+    "email": "hiba.recep03@gmail.com",
+    "telephone": "+212700112214",
+    "company": "Tech Solutions SARL",
+    "experiences": [
+      {
+        "Company": "MegaOffice",
+        "position": "Réceptionniste",
+        "duration": "2021 - 2022",
+        "description": "Gestion accueil et courriers."
+      },
+      {
+        "Company": "Tech Solutions SARL",
+        "position": "Reception & Support",
+        "duration": "2023 - Present",
+        "description": "Accueil visiteurs et traitement demandes."
+      }
+    ]
+  },
+
+  {
+    "name": "Yassine",
+    "image": "https://randomuser.me/api/portraits/men/52.jpg",
+    "role": "Sécurité",
+    "email": "yassine.sec04@gmail.com",
+    "telephone": "+212700112215",
+    "company": "Tech Solutions SARL",
+    "experiences": [
+      {
+        "Company": "SecureNet",
+        "position": "Sécurité",
+        "duration": "2018 - 2021",
+        "description": "Rondes, contrôle accès."
+      },
+      {
+        "Company": "Tech Solutions SARL",
+        "position": "Sécurité",
+        "duration": "2022 - Present",
+        "description": "Protection du personnel et équipement."
+      }
+    ]
+  },
+
+  {
+    "name": "Asma",
+    "image": "https://randomuser.me/api/portraits/women/33.jpg",
+    "role": "Nettoyage",
+    "email": "asma.clean03@gmail.com",
+    "telephone": "+212700112216",
+    "company": "Tech Solutions SARL",
+    "experiences": [
+      {
+        "Company": "CleanUp",
+        "position": "Agent nettoyage",
+        "duration": "2020 - 2022",
+        "description": "Entretien salles et bureaux."
+      },
+      {
+        "Company": "Tech Solutions SARL",
+        "position": "Nettoyage",
+        "duration": "2023 - Present",
+        "description": "Nettoyage quotidien."
+      }
+    ]
+  },
+
+  {
+    "name": "Farid",
+    "image": "https://randomuser.me/api/portraits/men/61.jpg",
+    "role": "Technicien IT",
+    "email": "farid.it04@gmail.com",
+    "telephone": "+212700112217",
+    "company": "Tech Solutions SARL",
+    "experiences": [
+      {
+        "Company": "TechMall",
+        "position": "Support IT",
+        "duration": "2019 - 2021",
+        "description": "Maintenance informatique."
+      },
+      {
+        "Company": "Tech Solutions SARL",
+        "position": "Technicien IT",
+        "duration": "2022 - Present",
+        "description": "Administration réseau."
+      }
+    ]
+  },
+
+  {
+    "name": "Karima",
+    "image": "https://randomuser.me/api/portraits/women/5.jpg",
+    "role": "Manager",
+    "email": "karima.manager04@gmail.com",
+    "telephone": "+212700112218",
+    "company": "Tech Solutions SARL",
+    "experiences": [
+      {
+        "Company": "SmartTeam",
+        "position": "Manager",
+        "duration": "2019 - 2022",
+        "description": "Planification et gestion RH."
+      },
+      {
+        "Company": "Tech Solutions SARL",
+        "position": "Manager",
+        "duration": "2023 - Present",
+        "description": "Gestion de projets et équipes."
+      }
+    ]
+  },
+
+  {
+    "name": "Said",
+    "image": "https://randomuser.me/api/portraits/men/46.jpg",
+    "role": "Réceptionniste",
+    "email": "said.recep04@gmail.com",
+    "telephone": "+212700112219",
+    "company": "Tech Solutions SARL",
+    "experiences": [
+      {
+        "Company": "CityOffice",
+        "position": "Réceptionniste",
+        "duration": "2021 - 2022",
+        "description": "Accueil et orientation visiteurs."
+      },
+      {
+        "Company": "Tech Solutions SARL",
+        "position": "Réceptionniste",
+        "duration": "2023 - Present",
+        "description": "Gestion des appels et rendez-vous."
       }
     ]
   }

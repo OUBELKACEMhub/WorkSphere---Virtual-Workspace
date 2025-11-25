@@ -69,7 +69,7 @@
         grid-template-rows: repeat(5, 1fr); 
         width: 100%;
         max-width: 1770px;
-        
+        color: #121212;
         aspect-ratio: 1117 / 640; 
         height: auto;    
         padding: 0;
@@ -192,12 +192,17 @@
        align-items: center;
     }
 
+    #mainForm{
+        overflow-y: scroll;
+        max-height: 30rem;
+    }
+
 
 
 
     .zoneAddBtn {
-        width: 35px;
-        height: 35px;
+        width: 2em;
+        height: 2em;
         cursor: pointer;
         background: rgba(0,0,0,0.6);
         border-radius: 50%;
@@ -212,17 +217,18 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 160px;
+        max-width: 222px;
         max-height: 120px;
         overflow-y: auto;
         background: rgba(255,255,255,0.95);
         border-radius: 8px;
-        padding: 5px;
+        margin-top: 3rem;
+        padding: 0.3em;
         display: flex;
         flex-direction: column;
-        gap: 5px;
+        gap: 0.3em;
         z-index: 30;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        box-shadow: 0 0.2em 0.6em rgba(0,0,0,0.5);
     }
     .zone_container:empty { display: none; }
 
@@ -233,8 +239,8 @@
         align-items: center;
         justify-content: space-between;
         background: #f3f4f6;
-        padding: 4px;
-        border-radius: 4px;
+        padding: 0.2em;
+        border-radius: 0.2em;
     }
     .zone_active {
         display: flex;
@@ -245,7 +251,10 @@
         position: absolute;
         top: 5px;
         width: 100%;
-        height: 10vh;
+        height: 13vh;
+        overflow-y: scroll;
+        color: #000;
+        font-size: large;
     }
     .active-worker-card {
         display: flex;
@@ -254,17 +263,17 @@
     }
     .worker-card {
         background: #2a2a2a;
-        padding: 10px;
-        border-radius: 8px;
+        padding: 0.6em;
+        border-radius: 0.5em;
         display: flex;
         align-items: center;
-        gap: 10px;
-        margin-bottom: 8px;
+        gap: 0.6em;
+        margin-bottom: 0.5em;
         position: relative;
         border: 1px solid #444;
     }
-    .worker-card img { width: 40px;
-         height: 40px; border-radius: 50%;
+    .worker-card img { width: 3em;
+         height: 3em; border-radius: 50%;
           object-fit: cover;
          }
     .worker-card .edit {
@@ -278,11 +287,12 @@
             }
     .worker-card .delete { right: 5px; 
         background: #ca9b3d;
-        color: white;
-        border-radius: 4px; 
-        padding: 2px 6px;
+        color: rgb(22, 12, 12);
+        border-radius: 0.4em; 
+        padding: 1em 1em;
         font-size: 0.7rem;
         position: absolute;
+        font-weight: bold;
         }
 
     .modal-overlay {
@@ -292,8 +302,8 @@
         transform: translate(-50%, -50%);
         z-index: 9999;
         background-color: rgb(31, 41, 55);
-        border-radius: 12px;
-        padding: 20px;
+        border-radius: 0.8rem;
+        padding: 1.2rem;
         width: 90%;
         max-width: 400px;
         box-shadow: 0 20px 25px rgba(0,0,0,0.5);
@@ -302,13 +312,25 @@
     }
 
     .imgDescrp{
-        width: 100px;
-        height: 100px;
+        width: 9rem;
+        height: 9rem;
     }
     .deleteicon {
         position: absolute;
         top: 4px;
         right: 5px;
+    }
+
+    .afficherDetail{
+           position :absolute;
+          top : 0.2em;
+         right :41em;
+        z-index:  44444;
+        color :black;
+        background-color:rgb(124, 133, 141);
+       border-radius :0.9em;
+        padding  :1.2em;
+        font-family : 'orbitron';
     }
 
        /* responsive */
@@ -332,7 +354,7 @@
             flex: none;
             min-height: 55vh; 
             align-items: flex-start;
-            padding: 10px;
+            padding: 0.6em;
         }
 
         .containner {

@@ -5,26 +5,32 @@ const descWorker = document.getElementById('descWorker');
 
 let currentActiveBtn = null;
 let currentActiveRole = null;
+let cuurentmax=null;
 
 fetch('data.json')
     .then(response => response.json())
     .then(data => {
         const DefaultWorkerData = [...data];
+        
+        // const tab=DefaultWorkerData.filter("")
         localStorage.setItem("MyWorkerData", JSON.stringify(DefaultWorkerData));
-
         let UnassignedWorkerData = JSON.parse(localStorage.getItem("MyWorkerData"));
-        if (!UnassignedWorkerData) {
-            UnassignedWorkerData = [...DefaultWorkerData];
-            localStorage.setItem("MyWorkerData", JSON.stringify(UnassignedWorkerData));
-        }
+        
 
-//    function saveToLocalStorage  
+////////////////////////////////>    function saveToLocalStorage  
 
         function saveToLocalStorage() {
             localStorage.setItem("MyWorkerData", JSON.stringify(UnassignedWorkerData));
         }
+        function CountNumberOfWorkers(zone){
+            const container = zone.querySelector('.zone_active'); 
+            const count=container.children.length;
+            return count;    
+        }   
+        
+        
 
-// function updateZoneColor() 
+//////////////////////////////////>function updateZoneColor() 
 
 function updateZoneColor() {
             const zones = document.querySelectorAll('.zones');
@@ -40,11 +46,13 @@ function updateZoneColor() {
                 } else {
                     element.style.backgroundColor = "transparent";
                     element.style.border = "none";
+                  
+
                 }
             });  
         }
-
-// fonction  renderWorkers()
+     
+/////////////////////////////////>fonction  renderWorkers()
         function renderWorkers() {
             UnassignedWorker.innerHTML = "";
             UnassignedWorkerData.forEach((e, index) => {
@@ -57,7 +65,7 @@ function updateZoneColor() {
                         <li>${e.name}</li>
                         <li>${e.role}</li>
                     </ul>
-                    <button class="edit">Edit</button>
+                    
                     <button class="delete">Delete</button>
                 `;
                 UnassignedWorker.appendChild(div);
@@ -67,24 +75,20 @@ function updateZoneColor() {
         renderWorkers();
         updateZoneColor();
 
+
+////////////////////////////////////////////// updateCurrentZone()     
         function updateCurrentZone() {
             if (currentActiveBtn && currentActiveRole !== null) {
-                addWorkerToZone(currentActiveRole, currentActiveBtn, UnassignedWorkerData);
+                addWorkerToZone(currentActiveRole, currentActiveBtn,cuurentmax, UnassignedWorkerData);
             }
         }
-
+ ////////////////////////////////////////////////////>afficherDetail(worker)
         function afficherDetail(worker) {
             if (!worker) return;
             
-            descWorker.style.position = "absolute";
-            descWorker.style.top = "0.2em";
-            descWorker.style.right = "41em";
-            descWorker.style.zIndex = "44444";
-            descWorker.style.color = "black";
-            descWorker.style.backgroundColor = "rgb(124, 133, 141)";
-            descWorker.style.borderRadius = "0.9em";
-            descWorker.style.padding = "1.2em";
-            descWorker.style.fontFamily = "orbitron";
+           descWorker.classList.add('afficherDetail');
+           descWorker.style.width="30rem"
+            // descWorker.classList.add('worker-detail');
             
             descWorker.innerHTML = `
                 <img src="images/icons8-close-24.png" class="deleteicon cursor-pointer">
@@ -97,23 +101,46 @@ function updateZoneColor() {
                 </div> 
                 <br>   
                 <ul>    
-                    <li><strong class="orbitron">Email:</strong> ${worker.email || 'unfound'}</li>
-                    <li><strong class="orbitron">Telephone:</strong> ${worker.telephone || 'unfound'}</li>
+                    <li><strong class="orbitron">Email:</strong> ${worker.email}</li>
+                    <li><strong class="orbitron">Telephone:</strong> ${worker.telephone}</li>
                 </ul>
                 <strong class="orbitron"><h3>Experiences:</h3></strong>
-                <ul >
-                    ${worker.experiences && worker.experiences.length > 0 ? 
-                      worker.experiences.map(exp => `<li class="orbitron"><strong>${exp.position || 'Poste'}</strong> 
-                        (${exp.duration || ''}) 
-                        <br> ${exp.description || ''}
-                        </li>
-                        `).join("") 
-                      : "<li>Pas d'expérience</li>"}
-                </ul>
+                <div  class="Experiences">
+                </div>
             `;
-        }
 
-        UnassignedWorker.addEventListener('click', (e) => {
+
+        ///afficher experiences
+             function afficherExperience(){
+                const ul=document.createElement('ul');
+                    if(worker.experiences && worker.experiences.length>0)
+                        for(let exp of worker.experiences ){
+                    ul.innerHTML+=`
+                        <li class="orbitron">
+                    <strong>${exp.position}</strong>
+                        (${exp.duration})
+                        <br>
+                    ${exp.description}
+                    </li>
+                    `
+            descWorker.querySelector('.Experiences').appendChild(ul)   
+        }}
+
+        afficherExperience();
+    }
+
+     UnassignedWorker.addEventListener('click', (e) => {
+            const card = e.target.closest('.worker-card');
+            const index = card.dataset.index;
+            afficherDetail(UnassignedWorkerData[index]);   
+        });     
+        
+       
+
+//////////////////////////////>deleteCardFromUnassignedWorker()+
+
+        function deleteCardFromUnassignedWorker(){
+           UnassignedWorker.addEventListener('click', (e) => {
             const card = e.target.closest('.worker-card');
             if (!card) return;
 
@@ -123,22 +150,28 @@ function updateZoneColor() {
 
                 saveToLocalStorage();
                 renderWorkers();
-                descWorker.innerHTML = "";
-                descWorker.style = "";
-                
+                descWorker.innerHTML ="";
+                descWorker.style ="";
                 updateCurrentZone();
                 return;
             }
+           
 
-            const index = card.dataset.index;
-            afficherDetail(UnassignedWorkerData[index]);
+            
         });
+        }
+        deleteCardFromUnassignedWorker()
+       
         descWorker.addEventListener('click', (e) => {
             if (e.target.classList.contains('deleteicon')) {
                 descWorker.innerHTML = "";
                 descWorker.style = "";
             }
         });
+
+      
+////////////////////////////////////////// function addworkerForm() 
+
         function addworkerForm() {
             addworkerBtn.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -149,18 +182,18 @@ function updateZoneColor() {
                         
                         <div class="flex flex-col">
                             <label class="font-semibold text-gray-700">Name</label>
-                            <input type="text" id="name" class="p-2 rounded-lg border text-black-200">
+                            <input type="text" id="name" class="p-2 rounded-lg border text-black">
                         </div>
                         
                         <div class="flex flex-col">
                             <label class="font-semibold text-gray-700">Photo URL</label>
-                            <input type="text" id="photo" placeholder="image URL" class="p-2 rounded-lg border text-black-200">
+                            <input type="text" id="photo" placeholder="image URL" class="p-2 rounded-lg border text-black">
                             <img id="preview" src="https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_640.png" width="100" class="mt-2 rounded shadow">
                         </div>
                         
                         <div class="flex flex-col">
                             <label class="font-semibold text-gray-700">Role</label>
-                            <select id="role" class="p-2 rounded-lg border border-gray-700 text-black-200">
+                            <select id="role" class="p-2 rounded-lg border  border text-black">
                                 <option value="Réceptionniste">Réceptionniste</option>
                                 <option value="Technicien IT">Technicien IT</option>
                                 <option value="sécurité">sécurité</option>
@@ -203,15 +236,15 @@ function updateZoneColor() {
 
                 const experiencesContainer = document.getElementById('experiences');
                 const addExpBtn = document.getElementById('addExperienceBtn');
-
+                const role=document.getElementById('experiencesContainer');
                 addExpBtn.addEventListener('click', () => {
                     const div = document.createElement('div');
                     div.classList.add('experience-item', 'flex', 'flex-col', 'p-3', 'rounded-lg', 'border', 'border-gray-300', 'bg-gray-50');
                     div.innerHTML = `
-                        <label class="font-semibold text-gray-700">Company</label>
+                        <label class="company font-semibold text-gray-700">Company</label>
                         <input type="text" class="exp-company p-1 border rounded mb-2 text-black">
                         
-                        <label class="font-semibold text-gray-700">Post</label>
+                        <label class="post font-semibold text-gray-700">Post</label>
                         <input type="text" class="exp-position p-1 border rounded mb-2 text-black">
                         
                         <div class="flex gap-2 text-black">
@@ -234,13 +267,48 @@ function updateZoneColor() {
                     experiencesContainer.appendChild(div);
                 });
 
-                const closeForm = () => worker.innerHTML = '';
-                document.getElementById('closeBtn').addEventListener('click', closeForm);
-                document.getElementById('cancelBtn').addEventListener('click', closeForm);
-                
+function validationForm(){
+    let isValid = true;
+    const inputName = document.getElementById('name');
+    const regexName = /^[A-Za-z]+$/;
+    const errorName = "Name invalide!!";
+    const inputphoto=document.getElementById('photo').value;
+    const inputEmail = document.getElementById('email');
+    const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const errorEmail = "Email invalide!!";
+
+    const inputPhone = document.getElementById('phone');
+    const regexPhone = /^\+212\d{8}$/;
+    const errorPhone = "Phone invalide!!";
+    test(inputName, regexName, errorName);
+    test(inputEmail, regexEmail, errorEmail);
+    test(inputPhone, regexPhone, errorPhone);
+
+    function test(inputElement, regex, messageError){
+        if(regex.test(inputElement.value)){
+            inputElement.style.border = "4px solid green";
+        } else {
+            isValid = false;
+            inputElement.style.border = "4px solid red";
+        }
+    }
+    return isValid;
+}     
+       
+
+  ////////////////> function claseBtn() 
+
+                function closeBtn(){
+                    const closeForm = () => worker.innerHTML = '';
+                    document.getElementById('closeBtn').addEventListener('click', closeForm);
+                    document.getElementById('cancelBtn').addEventListener('click', closeForm);
+                }
+                closeBtn();
+
+/////////////SAVE FORME
                 document.getElementById('saveBtn').addEventListener('click', (ev) => {
                     ev.preventDefault();
-
+                      if (validationForm()) {
                     const namev = document.getElementById('name').value;
                     const rolev = document.getElementById('role').value;
                     const photov = preview.src;
@@ -279,30 +347,42 @@ function updateZoneColor() {
                     renderWorkers();
                     closeForm(); 
                     updateCurrentZone();
+                }
+                else{
+                    validationForm();
+                }
+
+                ev.innerHTML=``
                 });
             });
         }
         addworkerForm();
         function getparRole(workers, role1) {
             if (!role1 || role1 === "") return workers;
-            return workers.filter(w => w.role.includes(role1));
+            const tab= workers.filter(w => w.role.includes(role1));
+            return tab;
         }
         
 
-        function addWorkerToZone(role, btnElement, Data) {
+    
+       var count=0;
+        function addWorkerToZone(role, btnElement,max, Data) {
             const parent = btnElement.parentElement;
             const zoneContainer = parent.querySelector('.zone_container');
-
-            // Filter workers
+            
             const tab = getparRole(UnassignedWorkerData, role);
-            zoneContainer.innerHTML = "";
+         
+            zoneContainer.innerHTML =`  <img src="images/icons8-close-24.png" class="close1"
+             style="absolute; width:20px; height:24px;  top: 0px; left :0px; border-radius:50%;">
+             `;
+
 
             tab.forEach(worker => {
                 const div = document.createElement('div');
                 div.classList.add('workersvaliables');
                 div.innerHTML = `
                     <div style="display:flex; align-items:center; gap:10px;">
-                        <img src="${worker.image}" style="width:40px; height:40px; object-fit:cover; border-radius:50%;">
+                        <img src="${worker.image}"  style="width:40px; height:40px; object-fit:cover; border-radius:50%;">
                         <div>
                             <strong>${worker.name}</strong>
                             <p>${worker.role}</p>
@@ -310,16 +390,17 @@ function updateZoneColor() {
                     </div>
                     <img src="images/icons8-add-100.png" class="addicons" style="cursor:pointer;">
                 `;
-
+               cuurentmax++;
+                zoneContainer.appendChild(div);
+            
                 const addIcon = div.querySelector('.addicons');
 
                 addIcon.addEventListener('click', () => {
-                    assignWorkerToActiveZone(worker, parent, div);
+                    assignWorkerToActiveZone(worker, parent,max, div);
 
                     const indexToDelete = UnassignedWorkerData.findIndex(w => w.name === worker.name);
                     if (indexToDelete !== -1) {
                         UnassignedWorkerData.splice(indexToDelete, 1);
-                    
                         saveToLocalStorage();
                         renderWorkers();
                         updateZoneColor()
@@ -327,14 +408,24 @@ function updateZoneColor() {
                     }
                 });
 
-                zoneContainer.appendChild(div);
+                
             });
         }
 
 
+  document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('close1')) {
+        const parent = e.target.parentElement;
+        parent.innerHTML = '';
+    }
+});
 
-        function assignWorkerToActiveZone(workerData, zoneParent, workerDiv) {
+////////////////////////////////>assignWorkerToActiveZone(workerData, zoneParent, workerDiv)
+    
+    
+        function assignWorkerToActiveZone(workerData, zoneParent,max, workerDiv) {
             let activeZone = zoneParent.querySelector('.zone_active');
+
             if (!activeZone) {
                 activeZone = document.createElement('div');
                 activeZone.classList.add('zone_active');
@@ -347,60 +438,112 @@ function updateZoneColor() {
             const activeDiv = document.createElement('div');
             activeDiv.classList.add('active-worker-card');
             activeDiv.innerHTML = `
-                <img src="${workerData.image}" style="width:65px; height:60px; border-radius:50%; border:4px solid green;">
-                <span style="font-size:12px; font-weight:bold;">${workerData.name}</span>
+               <div class="active-worker max-w-25 max-h-10 relative" style="position: relative;">
+              <img  src="images/icons8-delete-48.png"   class="deleteActiveWr" style="position:absolute; top:0px; right:0px; width:24px; height:24px; cursor:pointer;">
+            <img src="${workerData.image}" style="width:65px; height:60px; border-radius:50%; border:4px solid green;margin-top:5px">
+             <span style="font-size:12px; font-weight:bold;">${workerData.name}</span>
+            </div>
             `;
+          const obj={
+            name:workerData.name,
+            image:workerData.image
+          }
+           cuurentmax++;
             activeDiv.classList.add('activeDiv');
             activeZone.classList.add('zone_activeStyle');
             activeZone.appendChild(activeDiv);
-           updateZoneColor();
+            updateZoneColor();
         }
 
         const zoneAddBtn = document.querySelectorAll('.zoneAddBtn');
-
+   /////////////////function filterZone() 
         function filterZone() {
             zoneAddBtn.forEach(element => {
                 element.addEventListener('click', () => {
                     zoneAddBtn.forEach(btn => {
                         btn.disabled = false;
-                        btn.style.cursor = "pointer";
+                        btn.style.cursor = "pointer";//type souris
                         btn.style.opacity = "1";
                         const p = btn.parentElement;
                         const c = p.querySelector('.zone_container');
                         if (c) c.innerHTML = "";
                     });
-
                     element.disabled = true;
                     element.style.cursor = "not-allowed";
                     element.style.opacity = "0.5";
-
                     currentActiveBtn = element;
 
                     const parent = element.parentElement;
                     let roleToFilter = "";
-
                     if (parent.classList.contains('conference')) {
                         roleToFilter = "";
+                        max=9;
                     } else if (parent.classList.contains('Salle_archives')) {
                         roleToFilter = "Manager";
+                        
                     } else if (parent.classList.contains('sallesecurite')) {
                         roleToFilter = "sécurité";
+                   
                     } else if (parent.classList.contains('Réception')) {
                         roleToFilter = "Réceptionniste";
+                        
                     } else if (parent.classList.contains('Salledesserveurs')) {
                         roleToFilter = "Technicien IT";
+                      
                     } else if (parent.classList.contains('Salledupersonnel')) {
                         roleToFilter = "";
+                        
                     }
                     currentActiveRole = roleToFilter;
 
                     addWorkerToZone(roleToFilter, element, UnassignedWorkerData);
                 });
             });
-        }
-      
+        } 
         filterZone();
-    });
-   
 
-   
+
+
+function UpdateAfeterAddingUnsigned() {
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('deleteActiveWr')) {
+                
+                const activeCard = e.target.closest('.active-worker-card');
+                if (!activeCard) return;
+
+                const restoredWorker = {
+                    name: activeCard.dataset.name,
+                    role: activeCard.dataset.role,
+                    image: activeCard.dataset.image,
+                    email: activeCard.dataset.email,
+                    telephone: activeCard.dataset.telephone,
+                    experiences: JSON.parse(activeCard.dataset.experiences || "[]")
+                };
+                UnassignedWorkerData.push(restoredWorker);
+                saveToLocalStorage();
+                renderWorkers();       
+                updateCurrentZone();   
+                activeCard.remove();
+                updateZoneColor();
+            }
+        });
+    }
+
+    UpdateAfeterAddingUnsigned();
+
+});
+ 
+
+///////fonction 
+document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('deleteActiveWr')) {
+       e.target.parentElement.remove();
+       updateCurrentZone();
+       updateZoneColor();
+    }
+});
+
+
+
+
+
