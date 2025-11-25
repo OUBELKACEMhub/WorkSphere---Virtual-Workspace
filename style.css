@@ -38,6 +38,9 @@
         font-weight: bold;
         font-size: larger;
     }
+    .hidden {
+    display: none;
+}
 
     #addWorkerBtn {
         background-color: #22c55e;

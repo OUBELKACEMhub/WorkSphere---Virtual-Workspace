@@ -5,7 +5,6 @@ const descWorker = document.getElementById('descWorker');
 
 let currentActiveBtn = null;
 let currentActiveRole = null;
-let cuurentmax=null;
 
 fetch('data.json')
     .then(response => response.json())
@@ -13,8 +12,7 @@ fetch('data.json')
         const DefaultWorkerData = [...data];
         
         // const tab=DefaultWorkerData.filter("")
-        localStorage.setItem("MyWorkerData", JSON.stringify(DefaultWorkerData));
-        let UnassignedWorkerData = JSON.parse(localStorage.getItem("MyWorkerData"));
+        // let UnassignedWorkerData = JSON.parse(localStorage.getItem("MyWorkerData"));
         
 
 ////////////////////////////////>    function saveToLocalStorage  
@@ -22,11 +20,6 @@ fetch('data.json')
         function saveToLocalStorage() {
             localStorage.setItem("MyWorkerData", JSON.stringify(UnassignedWorkerData));
         }
-        function CountNumberOfWorkers(zone){
-            const container = zone.querySelector('.zone_active'); 
-            const count=container.children.length;
-            return count;    
-        }   
         
         
 
@@ -267,7 +260,6 @@ function updateZoneColor() {
                     experiencesContainer.appendChild(div);
                 });
 
-
 function validationForm(){
     let isValid = true;
     const inputName = document.getElementById('name');
@@ -348,15 +340,17 @@ function validationForm(){
                     renderWorkers();
                     closeForm(); 
                     updateCurrentZone();
+                    ev.class = ``;
                 }
                 else{
-                    validationForm();
-                }
-
-                ev.innerHTML=``
+                    alert("Validation Fieled!!!")
+                } 
+                
                 });
             });
+        
         }
+        
         addworkerForm();
         function getparRole(workers, role1) {
             if (!role1 || role1 === "") return workers;
@@ -391,13 +385,23 @@ function validationForm(){
                     </div>
                     <img src="images/icons8-add-100.png" class="addicons" style="cursor:pointer;">
                 `;
-               cuurentmax++;
+              
                 zoneContainer.appendChild(div);
             
                 const addIcon = div.querySelector('.addicons');
 
                 addIcon.addEventListener('click', () => {
-                    assignWorkerToActiveZone(worker, parent,max, div);
+                    const activeZone = parent.querySelector('.zone_active');
+            
+            let currentCount = 0;
+            if (activeZone) {
+                currentCount = activeZone.children.length;
+            }
+            if (currentCount >= max) {
+                alert(`Imposible d'ajouter! La zone est saturée (Max: ${max})`);
+                return; 
+            }
+      assignWorkerToActiveZone(worker, parent, max, div);
 
                     const indexToDelete = UnassignedWorkerData.findIndex(w => w.name === worker.name);
                     if (indexToDelete !== -1) {
@@ -449,7 +453,6 @@ function validationForm(){
             name:workerData.name,
             image:workerData.image
           }
-           cuurentmax++;
             activeDiv.classList.add('activeDiv');
             activeZone.classList.add('zone_activeStyle');
             activeZone.appendChild(activeDiv);
@@ -478,26 +481,32 @@ function validationForm(){
                     let roleToFilter = "";
                     if (parent.classList.contains('conference')) {
                         roleToFilter = "";
-                        max=9;
+                        limitmax=9;
                     } else if (parent.classList.contains('Salle_archives')) {
                         roleToFilter = "Manager";
+                         limitmax=3;
                         
                     } else if (parent.classList.contains('sallesecurite')) {
                         roleToFilter = "sécurité";
+                         limitmax=5;
                    
                     } else if (parent.classList.contains('Réception')) {
                         roleToFilter = "Réceptionniste";
+                         limitmax=2;
                         
                     } else if (parent.classList.contains('Salledesserveurs')) {
                         roleToFilter = "Technicien IT";
+                         limitmax=4;
                       
                     } else if (parent.classList.contains('Salledupersonnel')) {
                         roleToFilter = "";
+                         limitmax=20;
                         
                     }
                     currentActiveRole = roleToFilter;
-
-                    addWorkerToZone(roleToFilter, element, UnassignedWorkerData);
+                    
+                   addWorkerToZone(roleToFilter, element, limitmax, UnassignedWorkerData);
+                    
                 });
             });
         } 
@@ -530,6 +539,8 @@ function UpdateAfeterAddingUnsigned() {
         });
     }
 
+    
+    
     UpdateAfeterAddingUnsigned();
 
 });
