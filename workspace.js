@@ -12,7 +12,7 @@ fetch('data.json')
         const DefaultWorkerData = [...data];
         
         // const tab=DefaultWorkerData.filter("")
-        // let UnassignedWorkerData = JSON.parse(localStorage.getItem("MyWorkerData"));
+        let UnassignedWorkerData = JSON.parse(localStorage.getItem("MyWorkerData"));
         
 
 ////////////////////////////////>    function saveToLocalStorage  
