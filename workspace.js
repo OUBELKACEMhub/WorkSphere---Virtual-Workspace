@@ -267,6 +267,7 @@ function updateZoneColor() {
                     experiencesContainer.appendChild(div);
                 });
 
+
 function validationForm(){
     let isValid = true;
     const inputName = document.getElementById('name');
@@ -278,7 +279,7 @@ function validationForm(){
     const errorEmail = "Email invalide!!";
 
     const inputPhone = document.getElementById('phone');
-    const regexPhone = /^\+212\d{8}$/;
+    const regexPhone = /^\+212\d{9}$/;
     const errorPhone = "Phone invalide!!";
     test(inputName, regexName, errorName);
     test(inputEmail, regexEmail, errorEmail);

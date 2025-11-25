@@ -35,6 +35,8 @@
         font-family: 'orbitron', sans-serif;
         text-align: center;
         margin: 10px 0;
+        font-weight: bold;
+        font-size: larger;
     }
 
     #addWorkerBtn {
