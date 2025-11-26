@@ -495,7 +495,7 @@ function validationForm(){
                    
                     } else if (parent.classList.contains('Réception')) {
                         roleToFilter = "Réceptionniste";
-                         limitmax=2;
+                         limitmax=4;
                         
                     } else if (parent.classList.contains('Salledesserveurs')) {
                         roleToFilter = "Technicien IT";
