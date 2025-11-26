@@ -12,6 +12,7 @@ fetch('data.json')
         const DefaultWorkerData = [...data];
         
         // const tab=DefaultWorkerData.filter("")
+        localStorage.setItem("MyWorkerData", JSON.stringify(DefaultWorkerData));
         let UnassignedWorkerData = JSON.parse(localStorage.getItem("MyWorkerData"));
         
 
@@ -391,17 +392,19 @@ function validationForm(){
                 const addIcon = div.querySelector('.addicons');
 
                 addIcon.addEventListener('click', () => {
-                    const activeZone = parent.querySelector('.zone_active');
-            
+                    
+            const activeZone = parent.querySelector('.zone_active');
             let currentCount = 0;
             if (activeZone) {
                 currentCount = activeZone.children.length;
             }
-            if (currentCount >= max) {
+            if (currentCount>= max) {
                 alert(`Imposible d'ajouter! La zone est saturée (Max: ${max})`);
                 return; 
+            }else{
+                assignWorkerToActiveZone(worker, parent, max, div);
             }
-      assignWorkerToActiveZone(worker, parent, max, div);
+      
 
                     const indexToDelete = UnassignedWorkerData.findIndex(w => w.name === worker.name);
                     if (indexToDelete !== -1) {
@@ -500,11 +503,12 @@ function validationForm(){
                       
                     } else if (parent.classList.contains('Salledupersonnel')) {
                         roleToFilter = "";
-                         limitmax=20;
+                         limitmax=5;
                         
                     }
                     currentActiveRole = roleToFilter;
-                    
+                    // let elementActives=element.closest('.activeDiv')
+                    // // var count=elementActives.children.length;
                    addWorkerToZone(roleToFilter, element, limitmax, UnassignedWorkerData);
                     
                 });
@@ -554,6 +558,48 @@ document.addEventListener('click', (e) => {
        updateZoneColor();
     }
 });
+
+
+
+ 
+
+// const students = [
+//   { name: "Sara", age: 20, grade: 15 },
+//   { name: "Adam", age: 22, grade: 12 },
+//   { name: "Lina", age: 19, grade: 18 },
+//   { name: "Yassine", age: 21, grade: 10 }
+// ];
+
+
+// function StudentsNames(){
+//  for(let i=0;i<students.length;i++){
+//  const tab={};
+//   const obj={
+//  name:students[i].name
+//  }
+//  tab.push(obj);
+//  }
+// return tab;
+//  }
+// console.log(StudentsNames())
+
+
+// function StudentsNames(){  
+//     return  students.map(element=> element.name); 
+// }
+// console.log(StudentsNames());
+// function MoyeeneAge(){
+//     let total=0;
+//     let result=0;
+//    for(let i=0;i<students.length;i++){
+//       total+=students[i].age;
+// }
+// result=total/students.length;
+// return result;
+// }
+
+
+// console.log(MoyeeneAge());
 
 
 
